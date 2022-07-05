@@ -189,7 +189,7 @@ class SceneManager:
                     images = ALIENS_IMAGES[color][0:frames]
 
                     body = Body(position, size, velocity)
-                    animation = Animation(images, ALIENS_RATE, ALIENS_DELAY)
+                    animation = Image(images)
 
                     brick = Brick(body, animation, points)
                     cast.add_actor(ALIENS_GROUP, brick)
@@ -235,7 +235,7 @@ class SceneManager:
         size = Point(SPACESHIP_WIDTH, SPACESHIP_HEIGHT)
         velocity = Point(0, 0)
         body = Body(position, size, velocity)
-        animation = Animation(SPACESHIP_IMAGES, SPACESHIP_RATE)
+        animation = Image(SPACESHIP_IMAGES)
         racket = Racket(body, animation)
         cast.add_actor(SPACESHIP_GROUP, racket)
 
