@@ -146,23 +146,23 @@ class SceneManager:
     # ----------------------------------------------------------------------------------------------
     
     def _activate_ball(self, cast):
-        ball = cast.get_first_actor(BALL_GROUP)
+        ball = cast.get_first_actor(BULLET_GROUP)
         ball.release()
 
     def _add_ball(self, cast):
-        cast.clear_actors(BALL_GROUP)
-        x = CENTER_X - BALL_WIDTH / 2
-        y = SCREEN_HEIGHT - RACKET_HEIGHT - BALL_HEIGHT  
+        cast.clear_actors(BULLET_GROUP)
+        x = CENTER_X - BULLET_WIDTH / 2
+        y = SCREEN_HEIGHT - SPACESHIP_HEIGHT - BULLET_HEIGHT  
         position = Point(x, y)
-        size = Point(BALL_WIDTH, BALL_HEIGHT)
+        size = Point(BULLET_WIDTH, BULLET_HEIGHT)
         velocity = Point(0, 0)
         body = Body(position, size, velocity)
-        image = Image(BALL_IMAGE)
+        image = Image(BULLET_IMAGE)
         ball = Ball(body, image, True)
-        cast.add_actor(BALL_GROUP, ball)
+        cast.add_actor(BULLET_GROUP, ball)
 
     def _add_bricks(self, cast):
-        cast.clear_actors(BRICK_GROUP)
+        cast.clear_actors(ALIENS_GROUP)
         
         stats = cast.get_first_actor(STATS_GROUP)
         level = stats.get_level() % BASE_LEVELS
@@ -174,25 +174,25 @@ class SceneManager:
             for r, row in enumerate(reader):
                 for c, column in enumerate(row):
 
-                    x = FIELD_LEFT + c * BRICK_WIDTH
-                    y = FIELD_TOP + r * BRICK_HEIGHT
+                    x = 25 + c * ALIENS_WIDTH
+                    y = FIELD_TOP + r * ALIENS_HEIGHT + 20
                     color = column[0]
                     frames = int(column[1])
-                    points = BRICK_POINTS 
+                    points = ALIENS_POINTS 
                     
                     if frames == 1:
                         points *= 2
                     
                     position = Point(x, y)
-                    size = Point(BRICK_WIDTH, BRICK_HEIGHT)
+                    size = Point(ALIENS_WIDTH, ALIENS_HEIGHT)
                     velocity = Point(0, 0)
-                    images = BRICK_IMAGES[color][0:frames]
+                    images = ALIENS_IMAGES[color][0:frames]
 
                     body = Body(position, size, velocity)
-                    animation = Animation(images, BRICK_RATE, BRICK_DELAY)
+                    animation = Animation(images, ALIENS_RATE, ALIENS_DELAY)
 
                     brick = Brick(body, animation, points)
-                    cast.add_actor(BRICK_GROUP, brick)
+                    cast.add_actor(ALIENS_GROUP, brick)
 
     def _add_dialog(self, cast, message):
         cast.clear_actors(DIALOG_GROUP)
@@ -228,16 +228,16 @@ class SceneManager:
         cast.add_actor(STATS_GROUP, stats)
 
     def _add_racket(self, cast):
-        cast.clear_actors(RACKET_GROUP)
-        x = CENTER_X - RACKET_WIDTH / 2
-        y = SCREEN_HEIGHT - RACKET_HEIGHT
+        cast.clear_actors(SPACESHIP_GROUP)
+        x = CENTER_X - SPACESHIP_WIDTH / 2
+        y = SCREEN_HEIGHT - SPACESHIP_HEIGHT
         position = Point(x, y)
-        size = Point(RACKET_WIDTH, RACKET_HEIGHT)
+        size = Point(SPACESHIP_WIDTH, SPACESHIP_HEIGHT)
         velocity = Point(0, 0)
         body = Body(position, size, velocity)
-        animation = Animation(RACKET_IMAGES, RACKET_RATE)
+        animation = Animation(SPACESHIP_IMAGES, SPACESHIP_RATE)
         racket = Racket(body, animation)
-        cast.add_actor(RACKET_GROUP, racket)
+        cast.add_actor(SPACESHIP_GROUP, racket)
 
     # ----------------------------------------------------------------------------------------------
     # scripting methods
