@@ -24,6 +24,7 @@ class RaylibVideoService(VideoService):
         pyray.clear_background(raylib_color)
 
     def draw_image(self, image, position):
+        print(image)
         filepath = image.get_filename()
         # fixed os dependent filepath
         filepath = str(pathlib.Path(filepath))

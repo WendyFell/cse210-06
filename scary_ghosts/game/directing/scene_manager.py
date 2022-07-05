@@ -189,7 +189,7 @@ class SceneManager:
                     images = BRICK_IMAGES[color][0:frames]
 
                     body = Body(position, size, velocity)
-                    animation = Animation(images, BRICK_RATE, BRICK_DELAY)
+                    animation = Image(images)
 
                     brick = Brick(body, animation, points)
                     cast.add_actor(BRICK_GROUP, brick)
@@ -235,7 +235,7 @@ class SceneManager:
         size = Point(RACKET_WIDTH, RACKET_HEIGHT)
         velocity = Point(0, 0)
         body = Body(position, size, velocity)
-        animation = Animation(RACKET_IMAGES, RACKET_RATE)
+        animation = Image(RACKET_IMAGES)
         racket = Racket(body, animation)
         cast.add_actor(RACKET_GROUP, racket)
 
