@@ -1,7 +1,7 @@
 import csv
 from constants import *
 from game.casting.animation import Animation
-from game.casting.ball import Ball
+from game.casting.bullet import Bullet
 from game.casting.body import Body
 from game.casting.brick import Brick
 from game.casting.image import Image
@@ -158,7 +158,7 @@ class SceneManager:
         velocity = Point(0, 0)
         body = Body(position, size, velocity)
         image = Image(BULLET_IMAGE)
-        ball = Ball(body, image, True)
+        ball = Bullet(body, image, True)
         cast.add_actor(BULLET_GROUP, ball)
 
     def _add_bricks(self, cast):

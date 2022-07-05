@@ -1,0 +1,5 @@
+w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1
+u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1
+w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1
+u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1
+w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1, u1, w1

@@ -9,7 +9,7 @@ class MoveRacketAction(Action):
         pass
 
     def execute(self, cast, script, callback):
-        racket = cast.get_first_actor(RACKET_GROUP)
+        racket = cast.get_first_actor(SPACESHIP_GROUP)
         body = racket.get_body()
         velocity = body.get_velocity()
         position = body.get_position()
@@ -19,8 +19,8 @@ class MoveRacketAction(Action):
 
         if x < 0:
             position = Point(0, position.get_y())
-        elif x > (SCREEN_WIDTH - RACKET_WIDTH):
-            position = Point(SCREEN_WIDTH - RACKET_WIDTH, position.get_y())
+        elif x > (SCREEN_WIDTH - SPACESHIP_WIDTH):
+            position = Point(SCREEN_WIDTH - SPACESHIP_WIDTH, position.get_y())
             
         body.set_position(position)
         
