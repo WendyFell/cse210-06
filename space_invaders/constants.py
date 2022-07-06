@@ -27,7 +27,7 @@ FONT_LARGE = 48
 
 # BACKGROUND
 BG_GROUP = 'bg'
-BG_FILE = "space_invaders/assets/images/302.png"
+BG_FILE = "space_invaders/assets/images/303.png"
 BG_WIDTH = 1040
 BG_HEIGHT = 640
 
@@ -100,7 +100,7 @@ BULLET_GROUP = "bullets"
 BULLET_IMAGE = "space_invaders/assets/images/000.png"
 BULLET_WIDTH = 28
 BULLET_HEIGHT = 28
-BULLET_VELOCITY = 20
+BULLET_VELOCITY = 6
 
 # SPACESHIP
 SPACESHIP_GROUP = "spaceship"

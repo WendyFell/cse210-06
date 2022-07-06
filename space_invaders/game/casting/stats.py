@@ -56,8 +56,8 @@ class Stats(Actor):
     
     def next_level(self):
         """Adds one level."""
-        #self._level += 1
-        pass
+        self._level += 1
+        
 
     def reset(self):
         """Resets the stats back to their default values."""

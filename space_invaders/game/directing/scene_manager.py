@@ -171,9 +171,9 @@ class SceneManager:
     def _add_background(self, cast):
         cast.clear_actors(BG_GROUP)
         x = 20
-        y = 70
+        y = 80
         position = Point(x, y)
-        size = Point(BG_WIDTH - 50, BG_HEIGHT - 50)
+        size = Point(BG_WIDTH , BG_HEIGHT)
         velocity = Point(0, 0)
         body = Body(position, size, velocity)
         image = Image(BG_FILE)
