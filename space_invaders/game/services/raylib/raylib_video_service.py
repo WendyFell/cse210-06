@@ -27,7 +27,10 @@ class RaylibVideoService(VideoService):
         print(image)
         filepath = image.get_filename()
         # fixed os dependent filepath
+        if type(filepath) is list:
+            filepath = filepath[0]
         filepath = str(pathlib.Path(filepath))
+        print(filepath)
         texture = self._textures[filepath]
         x = position.get_x()
         y = position.get_y()
