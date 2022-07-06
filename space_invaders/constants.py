@@ -27,7 +27,9 @@ FONT_LARGE = 48
 
 # BACKGROUND
 BG_GROUP = 'bg'
-BG_FILE = [f"space_invaders/assets/images/150.png"]
+BG_FILE = "space_invaders/assets/images/302.png"
+BG_WIDTH = 1040
+BG_HEIGHT = 640
 
 # SOUND
 SHOOTING_SOUND = "space_invaders/assets/sounds/shooting.wav"
@@ -111,12 +113,12 @@ SPACESHIP_VELOCITY = 7
 # ALIENS
 ALIENS_GROUP = "aliens"
 ALIENS_IMAGES = {
-    "b": [f"space_invaders/assets/images/{i:03}.png" for i in range(11, 12)],
-    "g": [f"space_invaders/assets/images/{i:03}.png" for i in range(20,21)],
-    "w": [f"space_invaders/assets/images/{i:03}.png" for i in range(30,31)],
-    "y": [f"space_invaders/assets/images/{i:03}.png" for i in range(12, 13)], #pink
-    "u": [f"space_invaders/assets/images/{i:03}.png" for i in range(31,32)], #purple
-    "z": [f"space_invaders/assets/images/{i:03}.png" for i in range(41,42)]  #white
+    "b": [f"space_invaders/assets/images/011.png"],
+    "g": [f"space_invaders/assets/images/020.png"],
+    "w": [f"space_invaders/assets/images/030.png"],
+    "y": [f"space_invaders/assets/images/012.png"], #pink
+    "u": [f"space_invaders/assets/images/031.png"], #purple
+    "z": [f"space_invaders/assets/images/041.png"]  #white
 }
 ALIENS_WIDTH = 40
 ALIENS_HEIGHT = 40

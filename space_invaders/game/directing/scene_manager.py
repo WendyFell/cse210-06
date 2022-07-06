@@ -2,6 +2,7 @@ import csv
 from constants import *
 from game.casting.animation import Animation
 from game.casting.bullet import Bullet
+from game.casting.background import BG
 from game.casting.body import Body
 from game.casting.brick import Brick
 from game.casting.image import Image
@@ -35,6 +36,7 @@ from game.services.raylib.raylib_audio_service import RaylibAudioService
 from game.services.raylib.raylib_keyboard_service import RaylibKeyboardService
 from game.services.raylib.raylib_physics_service import RaylibPhysicsService
 from game.services.raylib.raylib_video_service import RaylibVideoService
+from game.scripting.draw_background import DrawBackground
 
 
 class SceneManager:
@@ -50,6 +52,7 @@ class SceneManager:
     COLLIDE_BRICKS_ACTION = CollideBrickAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     COLLIDE_RACKET_ACTION = CollideRacketAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     CONTROL_RACKET_ACTION = ControlRacketAction(KEYBOARD_SERVICE)
+    BG_SERVICE = DrawBackground(VIDEO_SERVICE)
     DRAW_BALL_ACTION = DrawBallAction(VIDEO_SERVICE)
     DRAW_BRICKS_ACTION = DrawBricksAction(VIDEO_SERVICE)
     DRAW_DIALOG_ACTION = DrawDialogAction(VIDEO_SERVICE)
@@ -84,6 +87,7 @@ class SceneManager:
     # ----------------------------------------------------------------------------------------------
     
     def _prepare_new_game(self, cast, script):
+        self._add_background(cast)
         self._add_stats(cast)
         self._add_level(cast)
         self._add_lives(cast)
@@ -102,6 +106,7 @@ class SceneManager:
         self._add_release_script(script)
         
     def _prepare_next_level(self, cast, script):
+        self._add_background(cast)
         self._add_ball(cast)
         self._add_bricks(cast)
         self._add_racket(cast)
@@ -113,6 +118,7 @@ class SceneManager:
         script.add_action(OUTPUT, PlaySoundAction(self.AUDIO_SERVICE, WELCOME_SOUND))
         
     def _prepare_try_again(self, cast, script):
+        self._add_background(cast)
         self._add_ball(cast)
         self._add_racket(cast)
         self._add_dialog(cast, PREP_TO_LAUNCH)
@@ -132,6 +138,7 @@ class SceneManager:
         self._add_output_script(script)
 
     def _prepare_game_over(self, cast, script):
+        self._add_background(cast)
         self._add_ball(cast)
         self._add_racket(cast)
         self._add_dialog(cast, WAS_GOOD_GAME)
@@ -160,6 +167,18 @@ class SceneManager:
         image = Image(BULLET_IMAGE)
         ball = Bullet(body, image, True)
         cast.add_actor(BULLET_GROUP, ball)
+        
+    def _add_background(self, cast):
+        cast.clear_actors(BG_GROUP)
+        x = 20
+        y = 70
+        position = Point(x, y)
+        size = Point(BG_WIDTH - 50, BG_HEIGHT - 50)
+        velocity = Point(0, 0)
+        body = Body(position, size, velocity)
+        image = Image(BG_FILE)
+        bg = BG(body, image, True)
+        cast.add_actor(BG_GROUP, bg)    
 
     def _add_bricks(self, cast):
         cast.clear_actors(ALIENS_GROUP)
@@ -254,6 +273,7 @@ class SceneManager:
         script.clear_actions(OUTPUT)
         script.add_action(OUTPUT, self.START_DRAWING_ACTION)
         script.add_action(OUTPUT, self.DRAW_HUD_ACTION)
+        script.add_action(OUTPUT, self.BG_SERVICE)
         script.add_action(OUTPUT, self.DRAW_BALL_ACTION)
         script.add_action(OUTPUT, self.DRAW_BRICKS_ACTION)
         script.add_action(OUTPUT, self.DRAW_RACKET_ACTION)

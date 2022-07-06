@@ -24,13 +24,13 @@ class RaylibVideoService(VideoService):
         pyray.clear_background(raylib_color)
 
     def draw_image(self, image, position):
-        print(image)
+        #print(image)
         filepath = image.get_filename()
         # fixed os dependent filepath
         if type(filepath) is list:
             filepath = filepath[0]
         filepath = str(pathlib.Path(filepath))
-        print(filepath)
+        #print(filepath)
         texture = self._textures[filepath]
         x = position.get_x()
         y = position.get_y()
