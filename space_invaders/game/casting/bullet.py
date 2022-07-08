@@ -1,4 +1,5 @@
 import random
+import math
 from constants import *
 from game.casting.actor import Actor
 from game.casting.point import Point
@@ -18,6 +19,7 @@ class Bullet(Actor):
         super().__init__(debug)
         self._body = body
         self._image = image
+        self.angle = 90
 
     def bounce_x(self):
         """Bounces the ball in the x direction."""
@@ -55,8 +57,9 @@ class Bullet(Actor):
         
     def release(self):
         """Release the ball in a random direction."""
-        rn = random.uniform(0.9, 1.1)
-        vx = random.choice([-BULLET_VELOCITY * rn, BULLET_VELOCITY * rn])
-        vy = -BULLET_VELOCITY
+        vx = math.sin(math.radians(self.angle + 90 )) * BULLET_VELOCITY    
+        vy = math.cos(math.radians(self.angle + 90)) * BULLET_VELOCITY
         velocity = Point(vx, vy)
         self._body.set_velocity(velocity)
+
+   
