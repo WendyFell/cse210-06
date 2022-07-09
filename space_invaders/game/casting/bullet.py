@@ -62,4 +62,10 @@ class Bullet(Actor):
         velocity = Point(vx, vy)
         self._body.set_velocity(velocity)
 
+    def new_bullet(self, ship_position):
+        self._body.set_velocity(Point(0,0))
+        self._body.set_position(ship_position)
+
+
+
    

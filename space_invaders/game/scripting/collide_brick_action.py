@@ -13,6 +13,7 @@ class CollideBrickAction(Action):
         ball = cast.get_first_actor(BULLET_GROUP)
         bricks = cast.get_actors(ALIENS_GROUP)
         stats = cast.get_first_actor(STATS_GROUP)
+        racket = cast.get_first_actor(SPACESHIP_GROUP)
         
         for brick in bricks:
             ball_body = ball.get_body()
@@ -24,5 +25,7 @@ class CollideBrickAction(Action):
                 self._audio_service.play_sound(sound)
                 points = brick.get_points()
                 stats.add_points(points)
-                cast.remove_actor(BULLET_GROUP, ball)
+                
+                ball.new_bullet(racket._body.get_position())
+                
                 cast.remove_actor(ALIENS_GROUP, brick)
