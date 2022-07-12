@@ -2,22 +2,21 @@ from constants import *
 from game.scripting.action import Action
 
 
-class DrawBallAction(Action):
-    pass
+class DrawAliensAction(Action):
+
     def __init__(self, video_service):
         self._video_service = video_service
         
     def execute(self, cast, script, callback):
-        try:
-            ball = cast.get_first_actor(BULLET_GROUP)
-            body = ball.get_body()
+        aliens = cast.get_actors(ALIENS_GROUP)
+        
+        for alien in aliens:
+            body = alien.get_body()
 
-            if ball.is_debug():
+            if alien.is_debug():
                 rectangle = body.get_rectangle()
                 self._video_service.draw_rectangle(rectangle, PURPLE)
                 
-            image = ball.get_image()
+            animation = alien.get_animation()
             position = body.get_position()
-            self._video_service.draw_image(image, position)
-        except:
-            print("No Bullets")
+            self._video_service.draw_image(animation, position)

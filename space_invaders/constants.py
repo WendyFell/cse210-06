@@ -62,7 +62,7 @@ GAME_OVER = 4
 
 # LEVELS
 LEVEL_FILE = "space_invaders/assets/data/level-{:03}.txt"
-BASE_LEVELS = 5
+BASE_LEVELS = 3
 
 # -------------------------------------------------------------------------------------------------- 
 # SCRIPTING CONSTANTS
