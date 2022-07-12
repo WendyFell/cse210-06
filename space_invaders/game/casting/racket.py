@@ -60,6 +60,7 @@ class Racket(Actor):
         self._body.set_velocity(velocity)
     
     def _add_ball(self, cast):
+        
         cast.clear_actors(BULLET_GROUP)
         x = self._body._position._x + 32
         y = self._body._position._y + 30
