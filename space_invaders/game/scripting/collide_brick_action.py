@@ -10,27 +10,25 @@ class CollideBrickAction(Action):
         self._audio_service = audio_service
         
     def execute(self, cast, script, callback):
-        ball = cast.get_first_actor(BULLET_GROUP)
-        bricks = cast.get_actors(ALIENS_GROUP)
+        bullet = cast.get_first_actor(BULLET_GROUP)
+        aliens = cast.get_actors(ALIENS_GROUP)
         stats = cast.get_first_actor(STATS_GROUP)
-        racket = cast.get_first_actor(SPACESHIP_GROUP)
+        ship = cast.get_first_actor(SPACESHIP_GROUP)
         try:
-            for brick in bricks:
+            for alien in aliens:
                 
-                ball_body = ball.get_body()
-                brick_body = brick.get_body()
+                bullet_body = bullet.get_body()
+                alien_body = alien.get_body()
 
-                if self._physics_service.has_collided(ball_body, brick_body):
+                if self._physics_service.has_collided(bullet_body, alien_body):
                     
                     sound = Sound(SHOOTING_SOUND)
                     self._audio_service.play_sound(sound)
-                    points = brick.get_points()
+                    points = alien.get_points()
                     stats.add_points(points)
                     
-                    #ball.new_bullet(racket._body.get_position())
-                    
-                    cast.remove_actor(ALIENS_GROUP, brick)
-                    cast.remove_actor(BULLET_GROUP, ball)
-                    cast.add_actor(BULLET_GROUP, ball._body.set_position(racket._body.get_position))
+                    cast.remove_actor(ALIENS_GROUP, alien)
+                    cast.remove_actor(BULLET_GROUP, bullet)
+                    cast.add_actor(BULLET_GROUP, bullet._body.set_position(ship._body.get_position))
         except:
             pass

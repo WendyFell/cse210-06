@@ -6,10 +6,10 @@ from game.casting.point import Point
 
 
 class Bullet(Actor):
-    """A solid, spherical object that is bounced around in the game."""
+    """A solid, spherical object that shoots the aliens."""
     
     def __init__(self, body, image, debug = False):
-        """Constructs a new Ball.
+        """Constructs a new Bullet.
 
         Args:
             body: A new instance of Body.
@@ -40,7 +40,7 @@ class Bullet(Actor):
         self._body.set_velocity(velocity)
 
     def get_body(self):
-        """Gets the ball's body.
+        """Gets the bullet's body.
         
         Returns:
             An instance of Body.
@@ -48,7 +48,7 @@ class Bullet(Actor):
         return self._body
 
     def get_image(self):
-        """Gets the ball's image.
+        """Gets the bullet's image.
         
         Returns:
             An instance of Image.
@@ -56,7 +56,7 @@ class Bullet(Actor):
         return self._image
         
     def release(self):
-        """Release the ball in a random direction."""
+        """Release the bullet in a given direction."""
         vx = math.sin(math.radians(self.angle + 90 )) * BULLET_VELOCITY    
         vy = math.cos(math.radians(self.angle + 90)) * BULLET_VELOCITY
         velocity = Point(0, vy)
@@ -64,21 +64,22 @@ class Bullet(Actor):
         
 
     def new_bullet(self, ship_position):
+        """Release a new bullet in a given direction."""
         self._body.set_velocity(Point(0,0))
         self._body.set_position(Point(CENTER_X, SCREEN_HEIGHT - SPACESHIP_HEIGHT))
 
     def swing_left(self):
-        """Steers the bat to the left."""
+        """Steers the bullet to the left."""
         velocity = Point(-SPACESHIP_VELOCITY, 0)
         self._body.set_velocity(velocity)
         
     def swing_right(self):
-        """Steers the bat to the right."""
+        """Steers the bullet to the right."""
         velocity = Point(SPACESHIP_VELOCITY, 0)
         self._body.set_velocity(velocity)
 
     def stop_moving(self):
-        """Stops the bat from moving."""
+        """Stops the bullet from moving."""
         velocity = Point(0, 0)
         self._body.set_velocity(velocity)    
 

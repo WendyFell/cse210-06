@@ -14,15 +14,13 @@ class ControlRacketAction(Action):
         stopable = True
         if self._keyboard_service.is_key_down(LEFT): 
             racket.swing_left()
-        #    bullet.swing_left()
             
         elif self._keyboard_service.is_key_down(RIGHT): 
             racket.swing_right() 
-         #   bullet.swing_right() 
             
         elif self._keyboard_service.is_key_down(SPACE):
             print(1)
-            racket._add_ball(cast)
+            racket._add_bullet(cast)
             racket.fire(cast)
             #bullet = cast.get_first_actor(BULLET_GROUP)  
             # bullet.release()

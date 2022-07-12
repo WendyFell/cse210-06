@@ -3,14 +3,14 @@ from game.casting.point import Point
 from game.scripting.action import Action
 
 
-class MoveRacketAction(Action):
+class MoveShipAction(Action):
 
     def __init__(self):
         pass
 
     def execute(self, cast, script, callback):
-        racket = cast.get_first_actor(SPACESHIP_GROUP)
-        body = racket.get_body()
+        ship = cast.get_first_actor(SPACESHIP_GROUP)
+        body = ship.get_body()
         velocity = body.get_velocity()
         position = body.get_position()
         x = position.get_x()

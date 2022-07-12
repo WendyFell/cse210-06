@@ -3,10 +3,10 @@ from game.casting.actor import Actor
 
 
 class BG(Actor):
-    """A implement used to hit and bounce the ball in the game."""
+    """Adds a background for the game"""
     
     def __init__(self, body, animation, points, debug = False):
-        """Constructs a new Brick.
+        """Constructs a new BG.
         
         Args:
             body: A new instance of Body.
@@ -19,7 +19,7 @@ class BG(Actor):
         self._points = points
         
     def get_animation(self):
-        """Gets the brick's image.
+        """Gets the aliens's image.
         
         Returns:
             An instance of Image.
@@ -27,7 +27,7 @@ class BG(Actor):
         return self._animation
 
     def get_body(self):
-        """Gets the brick's body.
+        """Gets the aliens's body.
         
         Returns:
             An instance of Body.
