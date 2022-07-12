@@ -61,8 +61,9 @@ class Racket(Actor):
     
     def _add_ball(self, cast):
         cast.clear_actors(BULLET_GROUP)
-        x = self._body._position._x
-        y = self._body._position._y 
+        x = self._body._position._x + 32
+        y = self._body._position._y + 30
+        print(x,y) 
         position = Point(x, y)
         size = Point(BULLET_WIDTH, BULLET_HEIGHT)
         velocity = Point(0, 0)
