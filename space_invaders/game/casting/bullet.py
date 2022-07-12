@@ -69,12 +69,12 @@ class Bullet(Actor):
 
     def swing_left(self):
         """Steers the bat to the left."""
-        velocity = Point(-SPACESHIP_VELOCITY - 5, 0)
+        velocity = Point(-SPACESHIP_VELOCITY, 0)
         self._body.set_velocity(velocity)
         
     def swing_right(self):
         """Steers the bat to the right."""
-        velocity = Point(SPACESHIP_VELOCITY + 5, 0)
+        velocity = Point(SPACESHIP_VELOCITY, 0)
         self._body.set_velocity(velocity)
 
     def stop_moving(self):

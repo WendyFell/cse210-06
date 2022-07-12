@@ -158,7 +158,7 @@ class SceneManager:
 
     def _add_ball(self, cast):
         cast.clear_actors(BULLET_GROUP)
-        x = CENTER_X - 6
+        x = CENTER_X 
         y = SCREEN_HEIGHT - SPACESHIP_HEIGHT 
         position = Point(x, y)
         size = Point(BULLET_WIDTH, BULLET_HEIGHT)
