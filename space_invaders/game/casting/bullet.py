@@ -59,12 +59,28 @@ class Bullet(Actor):
         """Release the ball in a random direction."""
         vx = math.sin(math.radians(self.angle + 90 )) * BULLET_VELOCITY    
         vy = math.cos(math.radians(self.angle + 90)) * BULLET_VELOCITY
-        velocity = Point(vx, vy)
+        velocity = Point(0, vy)
         self._body.set_velocity(velocity)
+        
 
     def new_bullet(self, ship_position):
         self._body.set_velocity(Point(0,0))
-        self._body.set_position(ship_position)
+        self._body.set_position(Point(CENTER_X, SCREEN_HEIGHT - SPACESHIP_HEIGHT))
+
+    def swing_left(self):
+        """Steers the bat to the left."""
+        velocity = Point(-SPACESHIP_VELOCITY - 5, 0)
+        self._body.set_velocity(velocity)
+        
+    def swing_right(self):
+        """Steers the bat to the right."""
+        velocity = Point(SPACESHIP_VELOCITY + 5, 0)
+        self._body.set_velocity(velocity)
+
+    def stop_moving(self):
+        """Stops the bat from moving."""
+        velocity = Point(0, 0)
+        self._body.set_velocity(velocity)    
 
 
 

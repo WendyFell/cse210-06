@@ -1,4 +1,7 @@
 from constants import *
+from game.casting.body import Body
+from game.casting.bullet import Bullet
+from game.casting.image import Image
 from game.casting.actor import Actor
 from game.casting.point import Point
 
@@ -55,3 +58,23 @@ class Racket(Actor):
         """Stops the bat from moving."""
         velocity = Point(0, 0)
         self._body.set_velocity(velocity)
+    
+    def _add_ball(self, cast):
+        cast.clear_actors(BULLET_GROUP)
+        x = CENTER_X - SPACESHIP_WIDTH / 2
+        y = SCREEN_HEIGHT - SPACESHIP_HEIGHT 
+        position = Point(x, y)
+        size = Point(BULLET_WIDTH, BULLET_HEIGHT)
+        velocity = Point(0, 0)
+        body = Body(position, size, velocity)
+        image = Image(BULLET_IMAGE)
+        ball = Bullet(body, image, True)
+        cast.add_actor(BULLET_GROUP, ball)
+
+    def fire(self, cast):
+        cast.get
+        x = CENTER_X
+        y = CENTER_Y
+        position = Point(x, y)
+        self._body.set_velocity(position)
+

@@ -53,7 +53,7 @@ class SceneManager:
     COLLIDE_RACKET_ACTION = CollideRacketAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     CONTROL_RACKET_ACTION = ControlRacketAction(KEYBOARD_SERVICE)
     BG_SERVICE = DrawBackground(VIDEO_SERVICE)
-    DRAW_BALL_ACTION = DrawBallAction(VIDEO_SERVICE)
+    #DRAW_BALL_ACTION = DrawBallAction(VIDEO_SERVICE)
     DRAW_BRICKS_ACTION = DrawBricksAction(VIDEO_SERVICE)
     DRAW_DIALOG_ACTION = DrawDialogAction(VIDEO_SERVICE)
     DRAW_HUD_ACTION = DrawHudAction(VIDEO_SERVICE)
@@ -92,7 +92,7 @@ class SceneManager:
         self._add_level(cast)
         self._add_lives(cast)
         self._add_score(cast)
-        self._add_ball(cast)
+        
         self._add_bricks(cast)
         self._add_racket(cast)
         self._add_dialog(cast, ENTER_TO_START)
@@ -107,7 +107,7 @@ class SceneManager:
         
     def _prepare_next_level(self, cast, script):
         self._add_background(cast)
-        self._add_ball(cast)
+       
         self._add_bricks(cast)
         self._add_racket(cast)
         self._add_dialog(cast, PREP_TO_LAUNCH)
@@ -119,7 +119,7 @@ class SceneManager:
         
     def _prepare_try_again(self, cast, script):
         self._add_background(cast)
-        self._add_ball(cast)
+        
         self._add_racket(cast)
         self._add_dialog(cast, PREP_TO_LAUNCH)
 
@@ -129,9 +129,9 @@ class SceneManager:
         self._add_output_script(script)
 
     def _prepare_in_play(self, cast, script):
-        self._activate_ball(cast)
+        #self._activate_ball(cast)
         cast.clear_actors(DIALOG_GROUP)
-
+        
         script.clear_actions(INPUT)
         script.add_action(INPUT, self.CONTROL_RACKET_ACTION)
         self._add_update_script(script)
@@ -139,7 +139,7 @@ class SceneManager:
 
     def _prepare_game_over(self, cast, script):
         self._add_background(cast)
-        self._add_ball(cast)
+        
         self._add_racket(cast)
         self._add_dialog(cast, WAS_GOOD_GAME)
 
@@ -152,13 +152,13 @@ class SceneManager:
     # casting methods
     # ----------------------------------------------------------------------------------------------
     
-    def _activate_ball(self, cast):
-        ball = cast.get_first_actor(BULLET_GROUP)
-        ball.release()
+    # def _activate_ball(self, cast):
+    #     ball = cast.get_first_actor(BULLET_GROUP)
+    #     ball.release()
 
     def _add_ball(self, cast):
         cast.clear_actors(BULLET_GROUP)
-        x = CENTER_X - SPACESHIP_WIDTH / 2
+        x = CENTER_X - 6
         y = SCREEN_HEIGHT - SPACESHIP_HEIGHT 
         position = Point(x, y)
         size = Point(BULLET_WIDTH, BULLET_HEIGHT)
@@ -274,7 +274,7 @@ class SceneManager:
         script.add_action(OUTPUT, self.START_DRAWING_ACTION)
         script.add_action(OUTPUT, self.DRAW_HUD_ACTION)
         script.add_action(OUTPUT, self.BG_SERVICE)
-        script.add_action(OUTPUT, self.DRAW_BALL_ACTION)
+        #script.add_action(OUTPUT, self.DRAW_BALL_ACTION)
         script.add_action(OUTPUT, self.DRAW_BRICKS_ACTION)
         script.add_action(OUTPUT, self.DRAW_RACKET_ACTION)
         script.add_action(OUTPUT, self.DRAW_DIALOG_ACTION)
