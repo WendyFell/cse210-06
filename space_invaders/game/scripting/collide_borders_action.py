@@ -1,6 +1,7 @@
 from constants import *
 from game.casting.sound import Sound
 from game.scripting.action import Action
+from game.casting.point import Point
 
 
 # class CollideBordersAction(Action):
