@@ -53,7 +53,7 @@ class SceneManager:
     COLLIDE_RACKET_ACTION = CollideRacketAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     CONTROL_RACKET_ACTION = ControlRacketAction(KEYBOARD_SERVICE)
     BG_SERVICE = DrawBackground(VIDEO_SERVICE)
-    #DRAW_BALL_ACTION = DrawBallAction(VIDEO_SERVICE)
+    DRAW_BALL_ACTION = DrawBallAction(VIDEO_SERVICE)
     DRAW_BRICKS_ACTION = DrawBricksAction(VIDEO_SERVICE)
     DRAW_DIALOG_ACTION = DrawDialogAction(VIDEO_SERVICE)
     DRAW_HUD_ACTION = DrawHudAction(VIDEO_SERVICE)
@@ -92,7 +92,7 @@ class SceneManager:
         self._add_level(cast)
         self._add_lives(cast)
         self._add_score(cast)
-        
+        #self._add_ball(cast)
         self._add_bricks(cast)
         self._add_racket(cast)
         self._add_dialog(cast, ENTER_TO_START)
@@ -107,7 +107,7 @@ class SceneManager:
         
     def _prepare_next_level(self, cast, script):
         self._add_background(cast)
-       
+        #self._add_ball(cast)
         self._add_bricks(cast)
         self._add_racket(cast)
         self._add_dialog(cast, PREP_TO_LAUNCH)
@@ -119,7 +119,7 @@ class SceneManager:
         
     def _prepare_try_again(self, cast, script):
         self._add_background(cast)
-        
+        #self._add_ball(cast)
         self._add_racket(cast)
         self._add_dialog(cast, PREP_TO_LAUNCH)
 
@@ -139,7 +139,7 @@ class SceneManager:
 
     def _prepare_game_over(self, cast, script):
         self._add_background(cast)
-        
+        #self._add_ball(cast)
         self._add_racket(cast)
         self._add_dialog(cast, WAS_GOOD_GAME)
 
@@ -274,7 +274,7 @@ class SceneManager:
         script.add_action(OUTPUT, self.START_DRAWING_ACTION)
         script.add_action(OUTPUT, self.DRAW_HUD_ACTION)
         script.add_action(OUTPUT, self.BG_SERVICE)
-        #script.add_action(OUTPUT, self.DRAW_BALL_ACTION)
+        script.add_action(OUTPUT, self.DRAW_BALL_ACTION)
         script.add_action(OUTPUT, self.DRAW_BRICKS_ACTION)
         script.add_action(OUTPUT, self.DRAW_RACKET_ACTION)
         script.add_action(OUTPUT, self.DRAW_DIALOG_ACTION)

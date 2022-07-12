@@ -21,8 +21,9 @@ class ControlRacketAction(Action):
          #   bullet.swing_right() 
             
         elif self._keyboard_service.is_key_down(SPACE):
-            racket._add_ball(BULLET_GROUP)
-            racket.fire()
+            print(1)
+            racket._add_ball(cast)
+            racket.fire(cast)
             #bullet = cast.get_first_actor(BULLET_GROUP)  
             # bullet.release()
             # bullet.new_bullet()

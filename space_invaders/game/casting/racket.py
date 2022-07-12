@@ -72,9 +72,7 @@ class Racket(Actor):
         cast.add_actor(BULLET_GROUP, ball)
 
     def fire(self, cast):
-        cast.get
-        x = CENTER_X
-        y = CENTER_Y
-        position = Point(x, y)
-        self._body.set_velocity(position)
+        self._add_ball(cast)
+        ball = cast.get_first_actor(BULLET_GROUP)
+        ball.release()
 
