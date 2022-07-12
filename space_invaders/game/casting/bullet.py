@@ -22,7 +22,7 @@ class Bullet(Actor):
         self.angle = 90
 
     def bounce_x(self):
-        """Bounces the ball in the x direction."""
+        """Shoots the bullet in the x direction."""
         velocity = self._body.get_velocity()
         rn = random.uniform(0.9, 1.1)
         vx = velocity.get_x() * rn * -1
@@ -31,7 +31,7 @@ class Bullet(Actor):
         self._body.set_velocity(velocity)
 
     def bounce_y(self):
-        """Bounces the ball in the y direction."""
+        """Shoots the bullet in the y direction."""
         velocity = self._body.get_velocity()
         rn = random.uniform(0.9, 1.1)
         vx = velocity.get_x()
