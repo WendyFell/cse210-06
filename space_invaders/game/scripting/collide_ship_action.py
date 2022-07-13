@@ -22,19 +22,32 @@ class CollideShipAction(Action):
 
                 if self._physics_service.has_collided(ship_body, alien_body):
                     
-                    #sound = Sound(SHOOTING_SOUND)
-                    #self._audio_service.play_sound(sound)
-                    #points = alien.get_points()
-                    #stats.add_points(points)
+                    sound = Sound(SHOOTING_SOUND)
+                    self._audio_service.play_sound(sound)
+                    points = alien.get_points()
+                    a = stats.add_points(points)
                     
                     stats = cast.get_first_actor(STATS_GROUP)
                     stats.lose_life()
-                    
-                    if stats.get_lives() > 0:
-                        callback.on_next(TRY_AGAIN) 
+                    print(stats._lives)
+                    if stats.get_lives() == 2:
+                        callback.on_next(TRY_AGAIN)
+                        
+                        stats.reset()
+                        if a > 0:
+                            a = a
+                            
+                        stats.lose_life()
+
+
+
+
                     else:
                         callback.on_next(GAME_OVER)
                         self._audio_service.play_sound(OVER_SOUND)
+
+                
         except:
             pass
-                
+    
+
