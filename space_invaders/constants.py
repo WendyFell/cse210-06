@@ -10,7 +10,11 @@ FRAME_RATE = 60
 
 # SCREEN
 SCREEN_WIDTH = 600
+<<<<<<< Updated upstream
 SCREEN_HEIGHT = 900
+=======
+SCREEN_HEIGHT = 980
+>>>>>>> Stashed changes
 CENTER_X = SCREEN_WIDTH / 2
 CENTER_Y = SCREEN_HEIGHT / 2
 

@@ -196,7 +196,7 @@ class SceneManager:
                 for c, column in enumerate(row):
 
                     x = 25 + c * ALIENS_WIDTH
-                    y = FIELD_TOP + r * ALIENS_HEIGHT + 20
+                    y = FIELD_TOP + r * ALIENS_HEIGHT + 15
                     color = column[0]
                     frames = int(column[1])
                     points = ALIENS_POINTS 
