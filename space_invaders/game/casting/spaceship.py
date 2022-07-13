@@ -69,11 +69,11 @@ class Spaceship(Actor):
         velocity = Point(0, 0)
         body = Body(position, size, velocity)
         image = Image(BULLET_IMAGE)
-        ball = Bullet(body, image, True)
-        cast.add_actor(BULLET_GROUP, ball)
+        bullet = Bullet(body, image, True)
+        cast.add_actor(BULLET_GROUP, bullet)
 
     def fire(self, cast):
         self._add_bullet(cast)
-        ball = cast.get_first_actor(BULLET_GROUP)
-        ball.release()
+        bullet = cast.get_first_actor(BULLET_GROUP)
+        bullet.release()
 

@@ -2,27 +2,27 @@ from constants import *
 from game.scripting.action import Action
 
 
-class ControlRacketAction(Action):
+class ControlShipAction(Action):
 
     def __init__(self, keyboard_service):
         self._keyboard_service = keyboard_service
         
     def execute(self, cast, script, callback):
-        racket = cast.get_first_actor(SPACESHIP_GROUP)
+        ship = cast.get_first_actor(SPACESHIP_GROUP)
         bullet = cast.get_first_actor(BULLET_GROUP)
         
         stopable = True
         if self._keyboard_service.is_key_down(LEFT): 
-            racket.swing_left()
+            ship.swing_left()
             
         elif self._keyboard_service.is_key_down(RIGHT): 
-            racket.swing_right() 
+            ship.swing_right() 
             
         elif self._keyboard_service.is_key_down(SPACE):
          
-            racket.fire(cast)
+            ship.fire(cast)
             stopable = False
         else: 
-            racket.stop_moving()
+           ship.stop_moving()
  
                  

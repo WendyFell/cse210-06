@@ -14,9 +14,9 @@ from game.casting.text import Text
 from game.scripting.change_scene_action import ChangeSceneAction
 from game.scripting.check_over_action import CheckOverAction
 #from game.scripting.collide_borders_action import CollideBordersAction
-from game.scripting.collide_brick_action import CollideBrickAction
-#from game.scripting.collide_racket_action import CollideRacketAction
-from game.scripting.control_racket_action import ControlRacketAction
+from game.scripting.collide_alien_action import CollideAlienAction
+#from game.scripting.collide_ship_action import CollideShipAction
+from game.scripting.control_ship_action import ControlShipAction
 from game.scripting.draw_bullet_action import DrawBulletAction
 from game.scripting.draw_aliens_action import DrawAliensAction
 from game.scripting.draw_dialog_action import DrawDialogAction
@@ -49,20 +49,20 @@ class SceneManager:
 
     CHECK_OVER_ACTION = CheckOverAction()
     #COLLIDE_BORDERS_ACTION = CollideBordersAction(PHYSICS_SERVICE, AUDIO_SERVICE)
-    COLLIDE_BRICKS_ACTION = CollideBrickAction(PHYSICS_SERVICE, AUDIO_SERVICE)
-    #COLLIDE_RACKET_ACTION = CollideRacketAction(PHYSICS_SERVICE, AUDIO_SERVICE)
-    CONTROL_RACKET_ACTION = ControlRacketAction(KEYBOARD_SERVICE)
+    COLLIDE_ALIENS_ACTION = CollideAlienAction(PHYSICS_SERVICE, AUDIO_SERVICE)
+    #COLLIDE_SHIP_ACTION = CollideShipAction(PHYSICS_SERVICE, AUDIO_SERVICE)
+    CONTROL_SHIP_ACTION = ControlShipAction(KEYBOARD_SERVICE)
     BG_SERVICE = DrawBackground(VIDEO_SERVICE)
-    DRAW_BALL_ACTION = DrawBulletAction(VIDEO_SERVICE)
-    DRAW_BRICKS_ACTION = DrawAliensAction(VIDEO_SERVICE)
+    DRAW_BULLET_ACTION = DrawBulletAction(VIDEO_SERVICE)
+    DRAW_ALIENS_ACTION = DrawAliensAction(VIDEO_SERVICE)
     DRAW_DIALOG_ACTION = DrawDialogAction(VIDEO_SERVICE)
     DRAW_HUD_ACTION = DrawHudAction(VIDEO_SERVICE)
-    DRAW_RACKET_ACTION= DrawShipAction(VIDEO_SERVICE)
+    DRAW_SHIP_ACTION= DrawShipAction(VIDEO_SERVICE)
     END_DRAWING_ACTION = EndDrawingAction(VIDEO_SERVICE)
     INITIALIZE_DEVICES_ACTION = InitializeDevicesAction(AUDIO_SERVICE, VIDEO_SERVICE)
     LOAD_ASSETS_ACTION = LoadAssetsAction(AUDIO_SERVICE, VIDEO_SERVICE)
-    MOVE_BALL_ACTION = MoveBulletAction()
-    MOVE_RACKET_ACTION = MoveShipAction()
+    MOVE_BULLET_ACTION = MoveBulletAction()
+    MOVE_SHIP_ACTION = MoveShipAction()
     RELEASE_DEVICES_ACTION = ReleaseDevicesAction(AUDIO_SERVICE, VIDEO_SERVICE)
     START_DRAWING_ACTION = StartDrawingAction(VIDEO_SERVICE)
     UNLOAD_ASSETS_ACTION = UnloadAssetsAction(AUDIO_SERVICE, VIDEO_SERVICE)
@@ -92,9 +92,9 @@ class SceneManager:
         self._add_level(cast)
         self._add_lives(cast)
         self._add_score(cast)
-        #self._add_ball(cast)
-        self._add_bricks(cast)
-        self._add_racket(cast)
+        #self._add_bullet(cast)
+        self._add_aliens(cast)
+        self._add_ship(cast)
         self._add_dialog(cast, ENTER_TO_START)
 
         self._add_initialize_script(script)
@@ -107,9 +107,9 @@ class SceneManager:
         
     def _prepare_next_level(self, cast, script):
         self._add_background(cast)
-        #self._add_ball(cast)
-        self._add_bricks(cast)
-        self._add_racket(cast)
+        #self._add_bullet(cast)
+        self._add_aliens(cast)
+        self._add_ship(cast)
         self._add_dialog(cast, PREP_TO_LAUNCH)
 
         script.clear_actions(INPUT)
@@ -119,8 +119,8 @@ class SceneManager:
         
     def _prepare_try_again(self, cast, script):
         self._add_background(cast)
-        #self._add_ball(cast)
-        self._add_racket(cast)
+        #self._add_bullet(cast)
+        self._add_ship(cast)
         self._add_dialog(cast, PREP_TO_LAUNCH)
 
         script.clear_actions(INPUT)
@@ -129,18 +129,18 @@ class SceneManager:
         self._add_output_script(script)
 
     def _prepare_in_play(self, cast, script):
-        #self._activate_ball(cast)
+        #self._activate_bullet(cast)
         cast.clear_actors(DIALOG_GROUP)
         
         script.clear_actions(INPUT)
-        script.add_action(INPUT, self.CONTROL_RACKET_ACTION)
+        script.add_action(INPUT, self.CONTROL_SHIP_ACTION)
         self._add_update_script(script)
         self._add_output_script(script)
 
     def _prepare_game_over(self, cast, script):
         self._add_background(cast)
-        #self._add_ball(cast)
-        self._add_racket(cast)
+        #self._add_bullet(cast)
+        self._add_ship(cast)
         self._add_dialog(cast, WAS_GOOD_GAME)
 
         script.clear_actions(INPUT)
@@ -152,11 +152,11 @@ class SceneManager:
     # casting methods
     # ----------------------------------------------------------------------------------------------
     
-    # def _activate_ball(self, cast):
-    #     ball = cast.get_first_actor(BULLET_GROUP)
-    #     ball.release()
+    # def _activate_bullet(self, cast):
+    #     bullet = cast.get_first_actor(BULLET_GROUP)
+    #     bullet.release()
 
-    def _add_ball(self, cast):
+    def _add_bullet(self, cast):
         cast.clear_actors(BULLET_GROUP)
         x = CENTER_X 
         y = SCREEN_HEIGHT - SPACESHIP_HEIGHT 
@@ -165,8 +165,8 @@ class SceneManager:
         velocity = Point(0, 0)
         body = Body(position, size, velocity)
         image = Image(BULLET_IMAGE)
-        ball = Bullet(body, image, True)
-        cast.add_actor(BULLET_GROUP, ball)
+        bullet = Bullet(body, image, True)
+        cast.add_actor(BULLET_GROUP, bullet)
         
     def _add_background(self, cast):
         cast.clear_actors(BG_GROUP)
@@ -180,7 +180,7 @@ class SceneManager:
         bg = BG(body, image, True)
         cast.add_actor(BG_GROUP, bg)    
 
-    def _add_bricks(self, cast):
+    def _add_aliens(self, cast):
         cast.clear_actors(ALIENS_GROUP)
         
         stats = cast.get_first_actor(STATS_GROUP)
@@ -210,8 +210,8 @@ class SceneManager:
                     body = Body(position, size, velocity)
                     animation = Image(images)
 
-                    brick = Alien(body, animation, points)
-                    cast.add_actor(ALIENS_GROUP, brick)
+                    alien = Alien(body, animation, points)
+                    cast.add_actor(ALIENS_GROUP, alien)
 
     def _add_dialog(self, cast, message):
         cast.clear_actors(DIALOG_GROUP)
@@ -246,7 +246,7 @@ class SceneManager:
         stats = Stats()
         cast.add_actor(STATS_GROUP, stats)
 
-    def _add_racket(self, cast):
+    def _add_ship(self, cast):
         cast.clear_actors(SPACESHIP_GROUP)
         x = CENTER_X - SPACESHIP_WIDTH / 2
         y = SCREEN_HEIGHT - SPACESHIP_HEIGHT
@@ -274,9 +274,9 @@ class SceneManager:
         script.add_action(OUTPUT, self.START_DRAWING_ACTION)
         script.add_action(OUTPUT, self.DRAW_HUD_ACTION)
         script.add_action(OUTPUT, self.BG_SERVICE)
-        script.add_action(OUTPUT, self.DRAW_BALL_ACTION)
-        script.add_action(OUTPUT, self.DRAW_BRICKS_ACTION)
-        script.add_action(OUTPUT, self.DRAW_RACKET_ACTION)
+        script.add_action(OUTPUT, self.DRAW_BULLET_ACTION)
+        script.add_action(OUTPUT, self.DRAW_ALIENS_ACTION)
+        script.add_action(OUTPUT, self.DRAW_SHIP_ACTION)
         script.add_action(OUTPUT, self.DRAW_DIALOG_ACTION)
         script.add_action(OUTPUT, self.END_DRAWING_ACTION)
 
@@ -290,10 +290,10 @@ class SceneManager:
         
     def _add_update_script(self, script):
         script.clear_actions(UPDATE)
-        script.add_action(UPDATE, self.MOVE_BALL_ACTION)
-        script.add_action(UPDATE, self.MOVE_RACKET_ACTION)
+        script.add_action(UPDATE, self.MOVE_BULLET_ACTION)
+        script.add_action(UPDATE, self.MOVE_SHIP_ACTION)
         #script.add_action(UPDATE, self.COLLIDE_BORDERS_ACTION)
-        script.add_action(UPDATE, self.COLLIDE_BRICKS_ACTION)
-        #script.add_action(UPDATE, self.COLLIDE_RACKET_ACTION)
-        script.add_action(UPDATE, self.MOVE_RACKET_ACTION)
+        script.add_action(UPDATE, self.COLLIDE_ALIENS_ACTION)
+        #script.add_action(UPDATE, self.COLLIDE_SHIP_ACTION)
+        script.add_action(UPDATE, self.MOVE_SHIP_ACTION)
         script.add_action(UPDATE, self.CHECK_OVER_ACTION)

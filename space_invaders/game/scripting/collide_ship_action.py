@@ -3,19 +3,19 @@ from game.casting.sound import Sound
 from game.scripting.action import Action
 
 
-# class CollideRacketAction(Action):
+# class CollideShipAction(Action):
 
 #     def __init__(self, physics_service, audio_service):
 #         self._physics_service = physics_service
 #         self._audio_service = audio_service
         
 #     def execute(self, cast, script, callback):
-#         #ball = cast.get_first_actor(BULLET_GROUP)
-#         racket = cast.get_first_actor(SPACESHIP_GROUP)
+#         #bullet = cast.get_first_actor(BULLET_GROUP)
+#         ship = cast.get_first_actor(SPACESHIP_GROUP)
         
-#         #ball_body = ball.get_body()
-#         racket_body = racket.get_body()
+#         #bullet_body = bullet.get_body()
+#         ship_body = ship.get_body()
 
-#         # if self._physics_service.has_collided(ball_body, racket_body):
-#         #     ball.bounce_y()
+#         # if self._physics_service.has_collided(bullet_body, ship_body):
+#         #     bullet.bounce_y()
                 
