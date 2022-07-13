@@ -15,7 +15,7 @@ from game.scripting.change_scene_action import ChangeSceneAction
 from game.scripting.check_over_action import CheckOverAction
 #from game.scripting.collide_borders_action import CollideBordersAction
 from game.scripting.collide_alien_action import CollideAlienAction
-#from game.scripting.collide_ship_action import CollideShipAction
+from game.scripting.collide_ship_action import CollideShipAction
 from game.scripting.control_ship_action import ControlShipAction
 from game.scripting.draw_bullet_action import DrawBulletAction
 from game.scripting.draw_aliens_action import DrawAliensAction
@@ -27,6 +27,7 @@ from game.scripting.initialize_devices_action import InitializeDevicesAction
 from game.scripting.load_assets_action import LoadAssetsAction
 from game.scripting.move_bullet_action import MoveBulletAction
 from game.scripting.move_ship_action import MoveShipAction
+from game.scripting.move_alien_action import MoveAlienAction
 from game.scripting.play_sound_action import PlaySoundAction
 from game.scripting.release_devices_action import ReleaseDevicesAction
 from game.scripting.start_drawing_action import StartDrawingAction
@@ -50,7 +51,7 @@ class SceneManager:
     CHECK_OVER_ACTION = CheckOverAction()
     #COLLIDE_BORDERS_ACTION = CollideBordersAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     COLLIDE_ALIENS_ACTION = CollideAlienAction(PHYSICS_SERVICE, AUDIO_SERVICE)
-    #COLLIDE_SHIP_ACTION = CollideShipAction(PHYSICS_SERVICE, AUDIO_SERVICE)
+    COLLIDE_SHIP_ACTION = CollideShipAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     CONTROL_SHIP_ACTION = ControlShipAction(KEYBOARD_SERVICE)
     BG_SERVICE = DrawBackground(VIDEO_SERVICE)
     DRAW_BULLET_ACTION = DrawBulletAction(VIDEO_SERVICE)
@@ -63,6 +64,7 @@ class SceneManager:
     LOAD_ASSETS_ACTION = LoadAssetsAction(AUDIO_SERVICE, VIDEO_SERVICE)
     MOVE_BULLET_ACTION = MoveBulletAction()
     MOVE_SHIP_ACTION = MoveShipAction()
+    MOVE_ALIEN_ACTION = MoveAlienAction()
     RELEASE_DEVICES_ACTION = ReleaseDevicesAction(AUDIO_SERVICE, VIDEO_SERVICE)
     START_DRAWING_ACTION = StartDrawingAction(VIDEO_SERVICE)
     UNLOAD_ASSETS_ACTION = UnloadAssetsAction(AUDIO_SERVICE, VIDEO_SERVICE)
@@ -292,8 +294,9 @@ class SceneManager:
         script.clear_actions(UPDATE)
         script.add_action(UPDATE, self.MOVE_BULLET_ACTION)
         script.add_action(UPDATE, self.MOVE_SHIP_ACTION)
+        script.add_action(UPDATE, self.MOVE_ALIEN_ACTION)
         #script.add_action(UPDATE, self.COLLIDE_BORDERS_ACTION)
         script.add_action(UPDATE, self.COLLIDE_ALIENS_ACTION)
-        #script.add_action(UPDATE, self.COLLIDE_SHIP_ACTION)
+        script.add_action(UPDATE, self.COLLIDE_SHIP_ACTION)
         script.add_action(UPDATE, self.MOVE_SHIP_ACTION)
         script.add_action(UPDATE, self.CHECK_OVER_ACTION)

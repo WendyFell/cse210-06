@@ -20,4 +20,4 @@ class DrawBulletAction(Action):
             position = body.get_position()
             self._video_service.draw_image(image, position)
         except:
-            print("No Bullets")
+            pass

@@ -10,7 +10,7 @@ class MoveBulletAction(Action):
         pass
         
     def execute(self, cast, script, callback):
-        pass
+        
         bullet = cast.get_first_actor(BULLET_GROUP)
         if type(bullet) is Bullet:
             body = bullet.get_body()
