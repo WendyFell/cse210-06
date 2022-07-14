@@ -29,10 +29,7 @@ class CollideShipAction(Action):
                     
                     stats = cast.get_first_actor(STATS_GROUP)
                     print(stats._lives)
-                        stats.lose_life()
-
-
-
+                    stats.lose_life()
             
                     if stats.get_lives() > 0:
                         callback.on_next(TRY_AGAIN) 
