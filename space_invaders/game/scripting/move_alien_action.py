@@ -12,13 +12,17 @@ class MoveAlienAction(Action):
         
     def execute(self, cast, script, callback):
         aliens = cast.get_actors(ALIENS_GROUP)
-        level = cast.get_actors(LEVEL_GROUP)
-        
-        if self.x % 10 == 0:
+        stats = cast.get_first_actor(STATS_GROUP)
+        level = stats.get_level()
+        if level == 1: 
+            time = 100
+        else:
+            time = 110 - (level * 15)
+        if time < 10:
+            time = 10
+        if self.x % time == 0:
             for alien in aliens:
-                
                 body = alien.get_body()
-                #if level == 1:
                 velocity = Point(0,10)
                 position = body.get_position()
                 position = position.add(velocity)
