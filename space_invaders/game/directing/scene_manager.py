@@ -122,7 +122,7 @@ class SceneManager:
     def _prepare_try_again(self, cast, script):
         self._add_background(cast)
         #self._add_bullet(cast)
-        self._add_aliens(cast)
+        #self._add_aliens(cast)
         self._add_ship(cast)
         self._add_dialog(cast, PREP_TO_LAUNCH)
 

@@ -31,5 +31,7 @@ class CollideAlienAction(Action):
                     cast.remove_actor(ALIENS_GROUP, alien)
                     cast.remove_actor(BULLET_GROUP, bullet)
                     cast.add_actor(BULLET_GROUP, bullet._body.set_position(ship._body.get_position))
+                    
+                    
         except:
             pass
