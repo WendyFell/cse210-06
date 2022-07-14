@@ -24,13 +24,13 @@ class MoveAlienAction(Action):
                     body.set_position(position)
                     
                 if levels == 2:
-                    velocity = Point(0, 2)
+                    velocity = Point(0, 1.5)
                     position = body.get_position()
                     position = position.add(velocity)
                     body.set_position(position) 
                     
                 if levels == 3:
-                    velocity = Point(0, 3)
+                    velocity = Point(0, 2)
                     position = body.get_position()
                     position = position.add(velocity)
                     body.set_position(position)           
