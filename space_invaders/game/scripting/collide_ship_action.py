@@ -4,6 +4,7 @@ from game.scripting.action import Action
 
 
 class CollideShipAction(Action):
+    pass
 
     def __init__(self, physics_service, audio_service):
         self._physics_service = physics_service
@@ -24,11 +25,10 @@ class CollideShipAction(Action):
                     
                     sound = Sound(OVER_SOUND)
                     self._audio_service.play_sound(sound)
-                    # points = alien.get_points()
-                    # stats.add_points(points)
+                    points = alien.get_points()
+                    stats.add_points(points)
                     
                     stats = cast.get_first_actor(STATS_GROUP)
-                    print(stats._lives)
                     stats.lose_life()
             
                     if stats.get_lives() > 0:
@@ -36,31 +36,6 @@ class CollideShipAction(Action):
                     else:
                         callback.on_next(GAME_OVER)
                         self._audio_service.play_sound(OVER_SOUND)
-                    
-                    # if stats.get_lives() == 3:
-                    #     stats.lose_life()
-                    #     callback.on_next(TRY_AGAIN)
-                    #     print(stats._lives)
-                        
-                    # if stats.get_lives() == 2:
-                        
-                    #     callback.on_next(TRY_AGAIN)
-                    #     stats.lose_life()
-                        
-                    #     print(stats._lives) 
-                            
-                    # if stats.get_lives() == 1:
-                        
-                    #     callback.on_next(TRY_AGAIN)
-                    #     print(stats._lives)   
-                            
-                        # if stats.get_lives() == 1:
-                            
-                        #     callback.on_next(TRY_AGAIN)
-                        #     print(stats._lives)          
-                        
-                    
-               
 
                 
         except:

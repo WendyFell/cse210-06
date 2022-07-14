@@ -1,8 +1,6 @@
-from secrets import choice
 from constants import *
 from game.scripting.action import Action
 from game.casting.point import Point
-from game.casting.bullet import Bullet
 
 
 class MoveAlienAction(Action):
