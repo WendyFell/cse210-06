@@ -13,7 +13,7 @@ from game.casting.stats import Stats
 from game.casting.text import Text 
 from game.scripting.change_scene_action import ChangeSceneAction
 from game.scripting.check_over_action import CheckOverAction
-#from game.scripting.collide_borders_action import CollideBordersAction
+from game.scripting.collide_borders_action import CollideBordersAction
 from game.scripting.collide_alien_action import CollideAlienAction
 from game.scripting.collide_ship_action import CollideShipAction
 from game.scripting.control_ship_action import ControlShipAction
@@ -49,7 +49,7 @@ class SceneManager:
     VIDEO_SERVICE = RaylibVideoService(GAME_NAME, SCREEN_WIDTH, SCREEN_HEIGHT)
 
     CHECK_OVER_ACTION = CheckOverAction()
-    #COLLIDE_BORDERS_ACTION = CollideBordersAction(PHYSICS_SERVICE, AUDIO_SERVICE)
+    COLLIDE_BORDERS_ACTION = CollideBordersAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     COLLIDE_ALIENS_ACTION = CollideAlienAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     COLLIDE_SHIP_ACTION = CollideShipAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     CONTROL_SHIP_ACTION = ControlShipAction(KEYBOARD_SERVICE)
@@ -296,7 +296,7 @@ class SceneManager:
         script.add_action(UPDATE, self.MOVE_BULLET_ACTION)
         script.add_action(UPDATE, self.MOVE_SHIP_ACTION)
         script.add_action(UPDATE, self.MOVE_ALIEN_ACTION)
-        #script.add_action(UPDATE, self.COLLIDE_BORDERS_ACTION)
+        script.add_action(UPDATE, self.COLLIDE_BORDERS_ACTION)
         script.add_action(UPDATE, self.COLLIDE_ALIENS_ACTION)
         script.add_action(UPDATE, self.COLLIDE_SHIP_ACTION)
         script.add_action(UPDATE, self.MOVE_SHIP_ACTION)
